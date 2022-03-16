@@ -1,32 +1,85 @@
 var express = require("express");
+const path = require('path');
+
 var app = express();
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log("Server running on port 3000");
 });
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'html');
 
-app.get("/bot-data", (req, res, next) => {
+app.get('/', (req, res) => {
+    res.render(__dirname + "index.html", {});
+})
+
+
+app.get('/info', (req, res) => {
+
+    res.render(__dirname + "information.html", {
+        "dateOfBirthH": '07-03-1441',
+        "deathDate": "",
+        "englishFirstName": "YOUSEF",
+        "englishLastName": "ALQAHTANI",
+        "englishSecondName": "BADER",
+        "englishThirdName": "SAEED",
+        "familyName": "سعيد",
+        "fatherName": "بدر",
+        "firstName": "يوسف",
+        "gender": "M",
+        "grandFatherName": "القحطاني",
+        "idExpiryDate": '10-03-1451',
+        "idIssuePlace": "الرياض",
+        "idIssuePlaceCode": 6,
+        "idVersionNumber": 0,
+        "logId": 1053210501,
+        "nationality": "SAU",
+        "placeOfBirth": "الرياض",
+        "has_account": true,
+        "married": true,
+        "children": 5,
+        "has_car": true,
+        "car_type": "Dodge Charger",
+        "car_purchase_date": 2015,
+        "studying": false,
+        "eligable_for_home_finance": true,
+        "national_address": "13 Olaya st, Riyadh",
+        "employer_name": "Bank Albilad",
+        "employer_address" : "8229 King Fahad Branch Rd, Riyadh, KSA"});
+})
+
+
+
+app.get("/get-data", (req, res, next) => {
     res.json([{
-
-
-
                 "dateOfBirthH": '07-03-1441',
                 "deathDate": "",
                 "englishFirstName": "YOUSEF",
                 "englishLastName": "ALQAHTANI",
                 "englishSecondName": "BADER",
                 "englishThirdName": "SAEED",
-                "familyName": "ط§ظ„ظ‚ط-ط·ط§ظ†ظٹ",
-                "fatherName": "ط¨ط¯ط±",
-                "firstName": "ظٹظˆط³ظپ",
+                "familyName": "سعيد",
+                "fatherName": "بدر",
+                "firstName": "يوسف",
                 "gender": "M",
-                "grandFatherName": "ط§ط¨ظ† ط³ط¹ظٹط¯",
+                "grandFatherName": "القحطاني",
                 "idExpiryDate": '10-03-1451',
-                "idIssuePlace": "طھط¨ظˆظƒ",
+                "idIssuePlace": "الرياض",
                 "idIssuePlaceCode": 6,
                 "idVersionNumber": 0,
                 "logId": 1053210501,
                 "nationality": "SAU",
-                "placeOfBirth": "طھط¨ظˆظƒ"
+                "placeOfBirth": "الرياض",
+                "has_account": true,
+                "married": true,
+                "children": 5,
+                "has_car": true,
+                "car_type": "Dodge Charger",
+                "car_purchase_date": 2015,
+                "studying": false,
+                "eligable_for_home_finance": true,
+                "national_address": "13 Olaya st, Riyadh",
+                "employer_name": "Bank Albilad",
+                "employer_address" : "8229 King Fahad Branch Rd, Riyadh, KSA"
 
 
     },{
@@ -37,24 +90,36 @@ app.get("/bot-data", (req, res, next) => {
                     "englishLastName": "SALEH",
                     "englishSecondName": "YOUSEF",
                     "englishThirdName": "-",
-                    "firstName": "ظ‡ظˆظٹط¯ظ‡",
+                    "firstName": "هويدة",
                     "gender": "F",
                     "iqamaExpiryDateH": '15-06-1444',
                     "iqamaIssuePlaceCode": 2,
-                    "iqamaIssuePlaceDesc":"ط¬ط¯ظ‡",
+                    "iqamaIssuePlaceDesc":"الرياض",
                     "iqamaVersionNumber": 11,
-                    "lastName": "طµط§ظ„ط-",
+                    "lastName": "يوسف",
                     "legalStatus": "true",
                     "logId": 567484523,
                     "nationalityCode": 110,
-                    "nationalityDesc": "ظ„ط¨ظ†ط§ظ†",
+                    "nationalityDesc": "مصرية",
                     "occupationCode": 6111023,
-                    "occupationDesc": "ظ…طµظپظپط© ط´ط¹ط±",
+                    "occupationDesc": "مدرسة",
                     "placeOfBirthCode": 110,
-                    "placeOfBirthDesc": "ظ„ط¨ظ†ط§ظ†",
-                    "secondName": "ظٹظˆط³ظپ",
-                    "sponsorName": "طµط§ظ„ظˆظ† ط®ظ„ظˆط¯ طµط¯ظ‚ظ‡ ظ…ط¬ظ…ط¯ ط§ظ„ظ…ط³ظ„ظ…ط§ظ†ظٹ ظ„ظ„طھط²ظٹظٹظ† ط§ظ„ظ†ط³ط§ط¦ظٹ",
-                    "thirdName": "-"
+                    "placeOfBirthDesc": "القاهرة",
+                    "secondName": "صالح",
+                    "sponsorName": "مدرسة مناهل الجيل العالمية",
+                    "thirdName": "-",
+                    "has_account": false,
+                    "married": true,
+                    "children": 0,
+                    "has_car": true,
+                    "car_type": "Dodge Charger",
+                    "car_purchase_date": 2015,
+                    "studying": true,
+                    "eligable_for_home_finance": true,
+                    "study_school": "Masters degree from Kind Fahd University",
+                    "national_address": "4228 Imam Saud St, Almorouj, Riyadh",
+                    "employer_name": "Manahel Elgeel International School",
+                    "employer_address" : "Al Khawarzami St, Olaya"
 
 
         }]
