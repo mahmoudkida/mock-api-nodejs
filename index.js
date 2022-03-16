@@ -1,50 +1,54 @@
-var express = require("express");
+const express = require("express");
 const path = require('path');
+const es6Renderer = require('express-es6-template-engine')
+const app = express();
+app.engine('html', es6Renderer);
 
-var app = express();
 app.listen(process.env.PORT || 3000, () => {
     console.log("Server running on port 3000");
 });
 app.use(express.static(path.join(__dirname, 'public')));
-app.set('view engine', 'html');
+// app.set('view engine', 'html');
 
 app.get('/', (req, res) => {
-    res.render(__dirname + "index.html", {});
+    res.render("index.html", {});
 })
-
 
 app.get('/info', (req, res) => {
 
-    res.render(__dirname + "information.html", {
-        "dateOfBirthH": '07-03-1441',
-        "deathDate": "",
-        "englishFirstName": "YOUSEF",
-        "englishLastName": "ALQAHTANI",
-        "englishSecondName": "BADER",
-        "englishThirdName": "SAEED",
-        "familyName": "سعيد",
-        "fatherName": "بدر",
-        "firstName": "يوسف",
-        "gender": "M",
-        "grandFatherName": "القحطاني",
-        "idExpiryDate": '10-03-1451',
-        "idIssuePlace": "الرياض",
-        "idIssuePlaceCode": 6,
-        "idVersionNumber": 0,
-        "logId": 1053210501,
-        "nationality": "SAU",
-        "placeOfBirth": "الرياض",
-        "has_account": true,
-        "married": true,
-        "children": 5,
-        "has_car": true,
-        "car_type": "Dodge Charger",
-        "car_purchase_date": 2015,
-        "studying": false,
-        "eligable_for_home_finance": true,
-        "national_address": "13 Olaya st, Riyadh",
-        "employer_name": "Bank Albilad",
-        "employer_address" : "8229 King Fahad Branch Rd, Riyadh, KSA"});
+    res.render("info.html", {
+        locals: {
+            "dateOfBirthH": '07-03-1441',
+            "deathDate": "",
+            "englishFirstName": "YOUSEF",
+            "englishLastName": "ALQAHTANI",
+            "englishSecondName": "BADER",
+            "englishThirdName": "SAEED",
+            "familyName": "سعيد",
+            "fatherName": "بدر",
+            "firstName": "يوسف",
+            "gender": "M",
+            "grandFatherName": "القحطاني",
+            "idExpiryDate": '10-03-1451',
+            "idIssuePlace": "الرياض",
+            "idIssuePlaceCode": 6,
+            "idVersionNumber": 0,
+            "logId": 1053210501,
+            "nationality": "SAU",
+            "placeOfBirth": "الرياض",
+            "has_account": true,
+            "married": true,
+            "children": 5,
+            "has_car": true,
+            "car_type": "Dodge Charger",
+            "car_purchase_date": 2015,
+            "studying": false,
+            "eligable_for_home_finance": true,
+            "national_address": "13 Olaya st, Riyadh",
+            "employer_name": "Bank Albilad",
+            "employer_address": "8229 King Fahad Branch Rd, Riyadh, KSA"
+        }
+    });
 })
 
 

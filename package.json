@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "express-es6-template-engine": "^2.2.3",
+    "html": "^1.0.0"
   }
 }
